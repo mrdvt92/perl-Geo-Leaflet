@@ -1,7 +1,7 @@
 package Geo::Leaflet::circle;
 use strict;
 use warnings;
-use base qw{Geo::Leaflet::Base};
+use base qw{Geo::Leaflet::Objects};
 
 our $VERSION = '0.01';
 our $PACKAGE = __PACKAGE__;

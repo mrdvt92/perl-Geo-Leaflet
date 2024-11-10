@@ -35,18 +35,7 @@ sub properties {
   $self->{'properties'} = shift if @_;
   $self->{'properties'} = {} unless $self->{'properties'};
   die("Error: properties must be a hash") unless ref($self->{'properties'}) eq 'HASH';
-  $self->{'properties'}->{'radius'} = $self->{'radius'} if defined $self->{'radius'};
   return $self->{'properties'};
-}
-
-=head2 popup
-
-=cut
-
-sub popup {
-  my $self         = shift;
-  $self->{'popup'} = shift if @_; 
-  return $self->{'popup'};
 }
 
 =head1 METHODS
@@ -56,19 +45,32 @@ sub popup {
 =cut
 
 sub stringify_base {
-  my $self   = shift;
-  my $encode = shift;
-  #const circle3 = L.circle([51.508, -0.11], {
-  #                                           color: 'red',
-  #                                           fillColor: '#f03',
-  #                                           fillOpacity: 0.5,
-  #                                           radius: 500
-  #                                          }).addTo(map);
-  my $class  = ref($self); #e.g., Geo::Leaflet::circle
-  $class     =~ s/.*:://;    #e.g., "circle"
-  my $addmap = '.addTo(map)';
-  my $popup  = $self->popup ? sprintf(".bindPopup('%s')", $self->popup) : '';
-  return sprintf(q{L.%s(%s, %s)%s%s;}, $class, $self->JSON->encode($encode), $self->JSON->encode($self->properties), $addmap, $popup);
+  my $self    = shift;
+  my $value   = shift;
+  #const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  #                  maxZoom: 19,
+  #                  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  #                 }).addTo(map);
+  #
+  #const circle = L.circle([51.508, -0.11], {
+  #                                          color: 'red',
+  #                                          fillColor: '#f03',
+  #                                          fillOpacity: 0.5,
+  #                                          radius: 500
+  #                                         }).addTo(map);
+  my $class   = ref($self); #e.g., Geo::Leaflet::circle
+  $class      =~ s/.*:://;  #e.g., "circle"
+  my $addmap  = '.addTo(map)';
+  my $popup   = $self->can('popup')   && $self->popup   ? sprintf('.bindPopup(%s)',   $self->JSON->encode($self->popup))   : '';
+  my $tooltip = $self->can('tooltip') && $self->tooltip ? sprintf('.bindTooltip(%s)', $self->JSON->encode($self->tooltip)) : '';
+  return sprintf(q{L.%s(%s, %s)%s%s%s;},
+                 $class,
+                 $self->JSON->encode($value),
+                 $self->JSON->encode($self->properties),
+                 $addmap,
+                 $popup,
+                 $tooltip,
+                );
 }
 
 =head2 JSON
@@ -77,7 +79,7 @@ sub stringify_base {
 
 sub JSON {
   my $self        = shift;
-  $self->{'JSON'} = JSON::XS->new;
+  $self->{'JSON'} = JSON::XS->new->allow_nonref;
   return $self->{'JSON'};
 }
 

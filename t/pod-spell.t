@@ -18,3 +18,10 @@ CGI
 html
 js
 setView
+Popups
+tooltip
+polyline
+llat
+llon
+ulat
+ulon
