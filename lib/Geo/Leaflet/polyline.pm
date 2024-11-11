@@ -3,12 +3,12 @@ use strict;
 use warnings;
 use base qw{Geo::Leaflet::polygon};
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 our $PACKAGE = __PACKAGE__;
 
 =head1 NAME
 
-Geo::Leaflet::polyline - Generates Leaflet web page
+Geo::Leaflet::polyline - Leaflet polyline object
 
 =head1 SYNOPSIS
 
@@ -16,18 +16,18 @@ Geo::Leaflet::polyline - Generates Leaflet web page
   my $map      = Geo::Leaflet->new;
   my $polyline = $map->polyline(
                               coordinates => [[$lat, $lon], ...]
-                              properties  => {},
+                              options     => {},
                              );
 
 =head1 DESCRIPTION
 
-The package is designed to be able to build a Leaflet map similar to what L<Geo::Google::StaticMaps::V2> used to be able to provide.
+This package constructs a Leaflet polyline object for use on a L<Geo::Leaflet> map.
 
 =head1 PROPERTIES
 
 =head2 coordinates
 
-=head2 properties
+=head2 options
 
 =head2 popup
 

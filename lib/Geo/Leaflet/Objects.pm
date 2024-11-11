@@ -3,12 +3,12 @@ use strict;
 use warnings;
 use base qw{Geo::Leaflet::Base};
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 our $PACKAGE = __PACKAGE__;
 
 =head1 NAME
 
-Geo::Leaflet::Objects - Generates Leaflet web page
+Geo::Leaflet::Objects - Leaflet object base package
 
 =head1 SYNOPSIS
 
@@ -17,7 +17,7 @@ Geo::Leaflet::Objects - Generates Leaflet web page
 
 =head1 DESCRIPTION
 
-Geo::Leaflet object base package that support map objects.
+This package provides a base package for L<Geo::Leaflet> map objects that supports popups and tooltips.
 
 =head1 CONSTRUCTORS
 
@@ -25,7 +25,7 @@ Geo::Leaflet object base package that support map objects.
  
 =head1 PROPERTIES
 
-=head2 properties
+=head2 options
 
 =head2 popup
 

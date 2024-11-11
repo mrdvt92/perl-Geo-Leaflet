@@ -25,3 +25,5 @@ llat
 llon
 ulat
 ulon
+popups
+tooltips

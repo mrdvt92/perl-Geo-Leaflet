@@ -3,28 +3,28 @@ use strict;
 use warnings;
 use base qw{Geo::Leaflet::Objects};
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 our $PACKAGE = __PACKAGE__;
 
 =head1 NAME
 
-Geo::Leaflet::rectangle - Generates Leaflet web page
+Geo::Leaflet::rectangle - Leaflet rectangle object
 
 =head1 SYNOPSIS
 
   use Geo::Leaflet;
   my $map       = Geo::Leaflet->new;
   my $rectangle = $map->rectangle(
-                                  llat       => $llat,
-                                  llon       => $llon,
-                                  ulat       => $ulat,
-                                  ulon       => $ulon,
-                                  properties => {},
+                                  llat    => $llat,
+                                  llon    => $llon,
+                                  ulat    => $ulat,
+                                  ulon    => $ulon,
+                                  options => {},
                                  );
 
 =head1 DESCRIPTION
 
-The package is designed to be able to build a Leaflet map similar to what L<Geo::Google::StaticMaps::V2> used to be able to provide.
+This package constructs a Leaflet rectangle object for use on a L<Geo::Leaflet> map.
 
 =head1 PROPERTIES
 
@@ -72,7 +72,7 @@ sub ulon {
   return $self->{'ulon'};
 }
 
-=head2 properties
+=head2 options
 
 =head2 popup
 

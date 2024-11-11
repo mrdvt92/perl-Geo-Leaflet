@@ -3,20 +3,20 @@ use strict;
 use warnings;
 use base qw{Geo::Leaflet::Base};
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 our $PACKAGE = __PACKAGE__;
 
 =head1 NAME
 
-Geo::Leaflet::tileLayer - Generates a Leaflet tileLayer Object
+Geo::Leaflet::tileLayer - Leaflet tileLayer Object
 
 =head1 SYNOPSIS
 
   use Geo::Leaflet;
   my $map       = Geo::Leaflet->new;
   my $tileLayer = $map->tileLayer(
-                                  url         => 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                  properties => {
+                                  url     => 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                  options => {
                                     maxZoom     => 19,
                                     attribution => '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
                                   }
@@ -24,7 +24,7 @@ Geo::Leaflet::tileLayer - Generates a Leaflet tileLayer Object
 
 =head1 DESCRIPTION
 
-The package generates a Leaflet tileLayer Object
+This package constructs a Leaflet tileLayer object for use on a L<Geo::Leaflet> map.
 
 =head1 CONSTRUCTORS
 
@@ -43,8 +43,8 @@ Returns the default OpenStreetMaps.org tileLayer.
 sub osm {
   my $self = shift;
   return $self->new(
-                    url         => 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    properties => {
+                    url     => 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    options => {
                       maxZoom     => 19,
                       attribution => '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
                     },

@@ -4,12 +4,12 @@ use warnings;
 use base qw{Package::New};
 use JSON::XS;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 our $PACKAGE = __PACKAGE__;
 
 =head1 NAME
 
-Geo::Leaflet::Base - Generates Leaflet web page
+Geo::Leaflet::Base - Leaflet base object
 
 =head1 SYNOPSIS
 
@@ -18,7 +18,7 @@ Geo::Leaflet::Base - Generates Leaflet web page
 
 =head1 DESCRIPTION
 
-Geo::Leaflet object base package.
+This package provides a base package for L<Geo::Leaflet> map objects.
 
 =head1 CONSTRUCTORS
 
@@ -26,16 +26,16 @@ Geo::Leaflet object base package.
  
 =head1 PROPERTIES
 
-=head2 properties
+=head2 options
 
 =cut
 
-sub properties {
+sub options {
   my $self              = shift;
-  $self->{'properties'} = shift if @_;
-  $self->{'properties'} = {} unless $self->{'properties'};
-  die("Error: properties must be a hash") unless ref($self->{'properties'}) eq 'HASH';
-  return $self->{'properties'};
+  $self->{'options'} = shift if @_;
+  $self->{'options'} = {} unless $self->{'options'};
+  die("Error: options must be a hash") unless ref($self->{'options'}) eq 'HASH';
+  return $self->{'options'};
 }
 
 =head1 METHODS
@@ -66,7 +66,7 @@ sub stringify_base {
   return sprintf(q{L.%s(%s, %s)%s%s%s;},
                  $class,
                  $self->JSON->encode($value),
-                 $self->JSON->encode($self->properties),
+                 $self->JSON->encode($self->options),
                  $addmap,
                  $popup,
                  $tooltip,

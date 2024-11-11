@@ -13,5 +13,6 @@ lib/Geo/Leaflet/polyline.pm
 lib/Geo/Leaflet/polygon.pm
 lib/Geo/Leaflet/rectangle.pm
 lib/Geo/Leaflet/circle.pm
+lib/Geo/Leaflet/icon.pm
 example/quick-start-example.pl
 perl-Geo-Leaflet.spec

@@ -15,11 +15,11 @@ diag(Dumper $marker);
 isa_ok($marker, 'Geo::Leaflet::marker');
 is(@Geo::Leaflet::OBJECTS, 1, 'sizeof objects');
 
-my $circle = $map->circle(lat=>51.508, lon=>-0.11, radius=>500, properties=>{color=>'red', fillColor=>'#f03', fillOpacity=>0.5}, popup=>'circle');
+my $circle = $map->circle(lat=>51.508, lon=>-0.11, radius=>500, options=>{color=>'red', fillColor=>'#f03', fillOpacity=>0.5}, popup=>'circle');
 isa_ok($circle, 'Geo::Leaflet::circle');
 is(@Geo::Leaflet::OBJECTS, 2, 'sizeof objects');
 
-my $polygon = $map->polygon(coordinates => [[51.509, -0.08], [51.503, -0.06], [51.51, -0.047]], properties=>{}, popup=>'polygon');
+my $polygon = $map->polygon(coordinates => [[51.509, -0.08], [51.503, -0.06], [51.51, -0.047]], options=>{}, popup=>'polygon');
 isa_ok($polygon, 'Geo::Leaflet::polygon');
 is(@Geo::Leaflet::OBJECTS, 3, 'sizeof objects');
 

@@ -1,20 +1,22 @@
-# NAME
+# File: lib/Geo/Leaflet.pm
 
-Geo::Leaflet - Generates Leaflet web page
+## NAME
 
-# SYNOPSIS
+Geo::Leaflet - Generates a Leaflet JavaScript map web page
+
+## SYNOPSIS
 
     use Geo::Leaflet;
     my $map = Geo::Leaflet->new;
     print $map->html;
 
-# DESCRIPTION
+## DESCRIPTION
 
-The package is designed to be able to build a Leaflet map similar to what [Geo::Google::StaticMaps::V2](https://metacpan.org/pod/Geo::Google::StaticMaps::V2) used to be able to provide.
+This package builds a [Leaflet JavaScript](https://leafletjs.com/) map web page.
 
-# CONSTRUCTORS
+## CONSTRUCTORS
 
-## new
+### new
 
 Returns a map object
 
@@ -24,15 +26,15 @@ Returns a map object
                                 zoom   => 13,
                                );
 
-# MAP PROPERTIES
+## MAP PROPERTIES
 
-## id
+### id
 
 Sets and returns the html id of the map.
 
 Default: "map"
 
-## center
+### center
 
 Sets and returns the center of the map.
 
@@ -41,7 +43,7 @@ Sets and returns the center of the map.
 
 Default: \[38.2, -97.2\]
 
-## zoom
+### zoom
 
 Sets and returns the zoom of the map.
 
@@ -50,13 +52,13 @@ Sets and returns the zoom of the map.
 
 Default: 4.5
 
-## setView
+### setView
 
 Sets the center and zoom of the map and returns the map object (i.e., matches leaflet.js interface).
 
     $map->setView([51.505, -0.09], 13);
 
-## width
+### width
 
 Sets and returns the pixel width of the map.
 
@@ -65,7 +67,7 @@ Sets and returns the pixel width of the map.
 
 Default: 600
 
-## height
+### height
 
 Sets and returns the pixel height of the map.
 
@@ -74,84 +76,466 @@ Sets and returns the pixel height of the map.
 
 Default: 400
 
-# HTML PROPERTIES
+## HTML PROPERTIES
 
-## title
+### title
 
 Sets and returns the HTML title.
 
 Default: "Leaflet Map"
 
-## objects
+## TILE LAYER CONSTRUCTOR
 
-# OBJECT CONSTRUCTORS
-
-## tileLayer
+### tileLayer
 
 Creates and returns a tileLayer object which is added to the map.
 
     $map->tileLayer(
-                    url         => 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    maxZoom     => 19,
-                    attribution => '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    url     => 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    options => {
+                      maxZoom     => 19,
+                      attribution => '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    },
                    );
 
     Default: OpenStreetMaps
 
-## marker
+See: [https://leafletjs.com/reference.html#tilelayer](https://leafletjs.com/reference.html#tilelayer)
+
+## ICON CONSTRUCTOR
+
+### icon
+
+    my $icon = $map->icon(
+                          name    => "my_icon", #must be a valid JavaScript variable name
+                          options => {
+                                      iconUrl      => "my-icon.png",
+                                      iconSize     => [38, 95],
+                                      iconAnchor   => [22, 94],
+                                      popupAnchor  => [-3, -76],
+                                      shadowUrl    => "my-icon-shadow.png",
+                                      shadowSize   => [68, 95],
+                                      shadowAnchor => [22, 94],
+                                     }
+                         );
+
+See: [https://leafletjs.com/reference.html#icon](https://leafletjs.com/reference.html#icon)
+
+## MAP OBJECT CONSTRUCTORS
+
+### marker
 
 Adds a marker object to the map and returns a reference to the marker object.
 
     $map->marker(lat=>$lat, lon=>$lon);
 
-## circle
+See: [https://leafletjs.com/reference.html#marker](https://leafletjs.com/reference.html#marker)
 
-Adds a circle object to the map and returns a reference to the circle object.
+### polyline
 
-    $map->circle(lat=>$lat, lon=>$lon, radius=>$radius, properties=>{});
+Adds a polyline object to the map and returns a reference to the polyline object.
 
-## polygon
+    my $latlngs = [[$lat, $lon], ...]
+    $map->polyline(coordinates=>$latlngs, options=>{});
+
+See: [https://leafletjs.com/reference.html#polyline](https://leafletjs.com/reference.html#polyline)
+
+### polygon
 
 Adds a polygon object to the map and returns a reference to the polygon object.
 
     my $latlngs = [[$lat, $lon], ...]
-    $map->polygon(coordinates=>$latlngs, properties=>{});
+    $map->polygon(coordinates=>$latlngs, options=>{});
 
-# METHODS
+See: [https://leafletjs.com/reference.html#polygon](https://leafletjs.com/reference.html#polygon)
 
-## html
+### rectangle
 
-## html\_head\_link
+Adds a rectangle object to the map and returns a reference to the rectangle object.
 
-## html\_head\_script
+    $map->rectangle(llat       => $llat,
+                    llon       => $llon,
+                    ulat       => $ulat,
+                    ulon       => $ulon,
+                    options => {});
 
-## html\_head\_style
+See: [https://leafletjs.com/reference.html#rectangle](https://leafletjs.com/reference.html#rectangle)
 
-## html\_body\_div
+### circle
 
-## html\_body\_script
+Adds a circle object to the map and returns a reference to the circle object.
 
-## html\_body\_script\_map
+    $map->circle(lat=>$lat, lon=>$lon, radius=>$radius, options=>{});
 
-## html\_body\_script\_contents
+See: [https://leafletjs.com/reference.html#circle](https://leafletjs.com/reference.html#circle)
 
-# OBJECT ACCESSORS
+## METHODS
 
-## CGI
+### html
 
-Returns a [CGI](https://metacpan.org/pod/CGI) object to generate HTML.
+### html\_head\_link
 
-# SEE ALSO
+### html\_head\_script
+
+### html\_head\_style
+
+### html\_body\_div
+
+### html\_body\_script
+
+### html\_body\_script\_map
+
+### html\_body\_script\_contents
+
+## OBJECT ACCESSORS
+
+### HTML
+
+Returns an [HTML:Tiny](HTML:Tiny) object to generate HTML.
+
+### JSON
+
+Returns a [JSON::XS](https://metacpan.org/pod/JSON::XS) object to generate JSON.
+
+## SEE ALSO
 
 [Geo::Google::StaticMaps::V2](https://metacpan.org/pod/Geo::Google::StaticMaps::V2)
 https://leafletjs.com/
 
-# AUTHOR
+## AUTHOR
 
 Michael R. Davis
 
-# COPYRIGHT AND LICENSE
+## COPYRIGHT AND LICENSE
 
 Copyright (C) 2024 by Michael R. Davis
 
 MIT LICENSE
+
+# File: lib/Geo/Leaflet/tileLayer.pm
+
+## NAME
+
+Geo::Leaflet::tileLayer - Leaflet tileLayer Object
+
+## SYNOPSIS
+
+    use Geo::Leaflet;
+    my $map       = Geo::Leaflet->new;
+    my $tileLayer = $map->tileLayer(
+                                    url     => 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                    options => {
+                                      maxZoom     => 19,
+                                      attribution => '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                                    }
+                                   );
+
+## DESCRIPTION
+
+This package constructs a Leaflet tileLayer object for use on a [Geo::Leaflet](https://metacpan.org/pod/Geo::Leaflet) map.
+
+## CONSTRUCTORS
+
+### new
+
+Returns a tileLayer object
+
+### osm
+
+Returns the default OpenStreetMaps.org tileLayer.
+
+    my $tileLayer = Geo::Leaflet::tileLayer->osm;
+
+## PROPERTIES
+
+### url
+
+## METHODS
+
+### stringify
+
+## SEE ALSO
+
+## AUTHOR
+
+Michael R. Davis
+
+## COPYRIGHT AND LICENSE
+
+Copyright (C) 2024 by Michael R. Davis
+
+MIT LICENSE
+
+# File: lib/Geo/Leaflet/polyline.pm
+
+## NAME
+
+Geo::Leaflet::polyline - Leaflet polyline object
+
+## SYNOPSIS
+
+    use Geo::Leaflet;
+    my $map      = Geo::Leaflet->new;
+    my $polyline = $map->polyline(
+                                coordinates => [[$lat, $lon], ...]
+                                options     => {},
+                               );
+
+## DESCRIPTION
+
+This package constructs a Leaflet polyline object for use on a [Geo::Leaflet](https://metacpan.org/pod/Geo::Leaflet) map.
+
+## PROPERTIES
+
+### coordinates
+
+### options
+
+### popup
+
+## METHODS
+
+### stringify
+
+## SEE ALSO
+
+## AUTHOR
+
+Michael R. Davis
+
+## COPYRIGHT AND LICENSE
+
+Copyright (C) 2024 by Michael R. Davis
+
+MIT LICENSE
+
+# File: lib/Geo/Leaflet/polygon.pm
+
+## NAME
+
+Geo::Leaflet::polygon - Leaflet polygon object
+
+## SYNOPSIS
+
+    use Geo::Leaflet;
+    my $map     = Geo::Leaflet->new;
+    my $polygon = $map->polygon(
+                                coordinates => [[$lat, $lon], ...]
+                                options     => {},
+                               );
+
+## DESCRIPTION
+
+This package constructs a Leaflet polygon object for use on a [Geo::Leaflet](https://metacpan.org/pod/Geo::Leaflet) map.
+
+## PROPERTIES
+
+### coordinates
+
+### options
+
+### popup
+
+## METHODS
+
+### stringify
+
+## SEE ALSO
+
+## AUTHOR
+
+Michael R. Davis
+
+## COPYRIGHT AND LICENSE
+
+Copyright (C) 2024 by Michael R. Davis
+
+MIT LICENSE
+
+# File: lib/Geo/Leaflet/rectangle.pm
+
+## NAME
+
+Geo::Leaflet::rectangle - Leaflet rectangle object
+
+## SYNOPSIS
+
+    use Geo::Leaflet;
+    my $map       = Geo::Leaflet->new;
+    my $rectangle = $map->rectangle(
+                                    llat    => $llat,
+                                    llon    => $llon,
+                                    ulat    => $ulat,
+                                    ulon    => $ulon,
+                                    options => {},
+                                   );
+
+## DESCRIPTION
+
+This package constructs a Leaflet rectangle object for use on a [Geo::Leaflet](https://metacpan.org/pod/Geo::Leaflet) map.
+
+## PROPERTIES
+
+### llat
+
+### llon
+
+### ulat
+
+### ulon
+
+### options
+
+### popup
+
+## METHODS
+
+### stringify
+
+## SEE ALSO
+
+## AUTHOR
+
+Michael R. Davis
+
+## COPYRIGHT AND LICENSE
+
+Copyright (C) 2024 by Michael R. Davis
+
+MIT LICENSE
+
+# File: lib/Geo/Leaflet/circle.pm
+
+## NAME
+
+Geo::Leaflet::circle - Leaflet circle object
+
+## SYNOPSIS
+
+    use Geo::Leaflet;
+    my $map    = Geo::Leaflet->new;
+    my $circle = $map->circle(
+                              lat     => $lat,
+                              lon     => $lon,
+                              radius  => $radius,
+                              options => {},
+                             );
+
+## DESCRIPTION
+
+This package constructs a Leaflet circle object for use on a [Geo::Leaflet](https://metacpan.org/pod/Geo::Leaflet) map.
+
+## PROPERTIES
+
+### lat
+
+### lon
+
+### radius
+
+### options
+
+## METHODS
+
+### stringify
+
+## SEE ALSO
+
+## AUTHOR
+
+Michael R. Davis
+
+## COPYRIGHT AND LICENSE
+
+Copyright (C) 2024 by Michael R. Davis
+
+MIT LICENSE
+
+# File: lib/Geo/Leaflet/marker.pm
+
+## NAME
+
+Geo::Leaflet::marker - Leaflet marker object
+
+## SYNOPSIS
+
+    use Geo::Leaflet;
+    my $map    = Geo::Leaflet->new;
+    my $marker = $map->marker(
+                              lat => $lat,
+                              lon => $lon,
+                             );
+
+## DESCRIPTION
+
+This package constructs a Leaflet marker object for use on a [Geo::Leaflet](https://metacpan.org/pod/Geo::Leaflet) map.
+
+## PROPERTIES
+
+### lat
+
+### lon
+
+### options
+
+### popup
+
+## METHODS
+
+### stringify
+
+## SEE ALSO
+
+## AUTHOR
+
+Michael R. Davis
+
+## COPYRIGHT AND LICENSE
+
+Copyright (C) 2024 by Michael R. Davis
+
+MIT LICENSE
+
+# File: lib/Geo/Leaflet/icon.pm
+
+## NAME
+
+Geo::Leaflet::icon - Leaflet icon object
+
+## SYNOPSIS
+
+    use Geo::Leaflet;
+    my $map = Geo::Leaflet->new;
+
+## DESCRIPTION
+
+This package constructs a Leaflet icon object for use in a [Geo::Leaflet::marker](https://metacpan.org/pod/Geo::Leaflet::marker) object.
+
+## CONSTRUCTORS
+
+### new
+
+## PROPERTIES
+
+### name
+
+### options
+
+## METHODS
+
+### stringify
+
+### JSON
+
+## SEE ALSO
+
+## AUTHOR
+
+Michael R. Davis
+
+## COPYRIGHT AND LICENSE
+
+Copyright (C) 2024 by Michael R. Davis
+
+MIT LICENSE
+
