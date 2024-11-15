@@ -137,7 +137,7 @@ sub width {
 
 =head2 height
 
-Sets and returns the pixel height of the map.
+Sets and returns the percent or pixel height of the map.
 
   $map->height('400px');
   $map->height('100%');
