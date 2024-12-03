@@ -56,6 +56,8 @@ sub options {
 
 =cut
 
+sub _method_name {'icon'};
+
 sub stringify {
   my $self    = shift;
   # var icon_name = L.icon({
@@ -67,7 +69,7 @@ sub stringify {
   #          shadowSize: [68, 95],
   #          shadowAnchor: [22, 94]
   #        }); 
-  return sprintf(q{L.icon(%s);}, $self->JSON->encode($self->options));
+  return sprintf(q{L.%s(%s);}, $self->_method_name, $self->JSON->encode($self->options));
 }
 
 =head2 JSON

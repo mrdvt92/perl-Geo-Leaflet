@@ -27,3 +27,4 @@ ulat
 ulon
 popups
 tooltips
+divIcon
