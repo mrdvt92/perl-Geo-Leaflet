@@ -13,7 +13,7 @@ use Geo::Leaflet::divIcon;
 use JSON::XS qw{};
 use HTML::Tiny qw{};;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 our $PACKAGE = __PACKAGE__;
 
 =head1 NAME
@@ -231,16 +231,29 @@ sub icon {
 
 Represents a lightweight icon for markers that uses a simple `div` element instead of an image. 
 
+Font Awesome with defaults
+
+  my $icon = $map->divIcon(icon_name => "bicycle");
+
+Font Awesome with tweaks
+
   my $icon = $map->divIcon(
-                        name          => "my_fa_icon", #Must be a valid JavaScript variable name
-                        icon_set      => "fa",         #fa => Font Awesome, TODO others
-                        icon_name     => "plus",       #See https://fontawesome.com/v4/icons/ 
-                        icon_rotation => 90,           #TODO: degrees clockwise
+                           icon_name      => "bicycle",
+                           icon_font_size => 22,
+                           options => {
+                                       iconAnchor => [11,11],
+                                      },
+                          );
+
+Other CSS options
+
+  my $icon = $map->divIcon(
                         options => {
-                                    html  => "",       #TODO: ???
-                                    bgPos => [0, 0],
+                                    html  => '<i class="fa fa-map-marker", style="font-size:48px"></i>',
+                                    iconAnchor => [13, 44],
                                    }
                        );
+
 
 See: https://leafletjs.com/reference.html#divicon
 
@@ -358,7 +371,9 @@ sub circle {
 sub html {
   my $self = shift;
   my $html = $self->HTML;
-  return $html->html([
+  return join "",
+         '<!DOCTYPE html>',
+         $html->html([
            $html->head([
              $html->title($self->title),
              $self->html_head_links,

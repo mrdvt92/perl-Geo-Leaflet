@@ -4,7 +4,7 @@ use warnings;
 use base qw{Package::New};
 use JSON::XS;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 our $PACKAGE = __PACKAGE__;
 
 =head1 NAME
@@ -28,12 +28,19 @@ This package constructs a Leaflet icon object for use in a L<Geo::Leaflet::marke
 
 =head2 name
 
+The JavaScript name for the icon object.
+
+Default: iconNNN
+
 =cut
 
+our $NAME_PREFIX = 'icon';
+our $NAME_INDEX  = 1;
+
 sub name {
-  my $self        = shift;
-  $self->{'name'} = shift if @_;
-  die("Error: $PACKAGE name required") unless defined $self->{'name'};
+  my $self          = shift;
+  $self->{'name'}   = shift if @_;
+  $self->{'name'} ||= sprintf(sprintf('%s%d', $NAME_PREFIX, $NAME_INDEX++));
   die("Error: $PACKAGE name invaild variable name") unless $self->{'name'} =~ m/\A[a-z_][a-z0-9_]*\Z/i;
   return $self->{'name'};
 }
