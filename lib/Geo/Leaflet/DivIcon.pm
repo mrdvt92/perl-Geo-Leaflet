@@ -1,14 +1,14 @@
-package Geo::Leaflet::divIcon;
+package Geo::Leaflet::DivIcon;
 use strict;
 use warnings;
-use base qw{Geo::Leaflet::icon};
+use base qw{Geo::Leaflet::Icon};
 
 our $VERSION = '0.04';
 our $PACKAGE = __PACKAGE__;
 
 =head1 NAME
 
-Geo::Leaflet::divIcon - Leaflet HTML/CSS icon object
+Geo::Leaflet::DivIcon - Leaflet HTML/CSS icon object
 
 =head1 SYNOPSIS
 

@@ -1,4 +1,4 @@
-package Geo::Leaflet::rectangle;
+package Geo::Leaflet::Rectangle;
 use strict;
 use warnings;
 use base qw{Geo::Leaflet::Objects};
@@ -8,7 +8,7 @@ our $PACKAGE = __PACKAGE__;
 
 =head1 NAME
 
-Geo::Leaflet::rectangle - Leaflet rectangle object
+Geo::Leaflet::Rectangle - Leaflet rectangle object
 
 =head1 SYNOPSIS
 
@@ -81,6 +81,8 @@ sub ulon {
 =head2 stringify
 
 =cut
+
+sub _method_name {'rectangle'};
 
 sub stringify {
   my $self = shift;

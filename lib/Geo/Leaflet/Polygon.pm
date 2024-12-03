@@ -1,4 +1,4 @@
-package Geo::Leaflet::polygon;
+package Geo::Leaflet::Polygon;
 use strict;
 use warnings;
 use base qw{Geo::Leaflet::Objects};
@@ -8,7 +8,7 @@ our $PACKAGE = __PACKAGE__;
 
 =head1 NAME
 
-Geo::Leaflet::polygon - Leaflet polygon object
+Geo::Leaflet::Polygon - Leaflet polygon object
 
 =head1 SYNOPSIS
 
@@ -45,6 +45,8 @@ sub coordinates {
 =head2 stringify
 
 =cut
+
+sub _method_name {'polygon'};
 
 sub stringify {
   my $self = shift;

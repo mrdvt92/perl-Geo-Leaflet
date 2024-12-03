@@ -1,4 +1,4 @@
-package Geo::Leaflet::circle;
+package Geo::Leaflet::Circle;
 use strict;
 use warnings;
 use base qw{Geo::Leaflet::Objects};
@@ -8,7 +8,7 @@ our $PACKAGE = __PACKAGE__;
 
 =head1 NAME
 
-Geo::Leaflet::circle - Leaflet circle object
+Geo::Leaflet::Circle - Leaflet circle object
 
 =head1 SYNOPSIS
 
@@ -66,6 +66,8 @@ sub radius {
 =head2 stringify
 
 =cut
+
+sub _method_name {'circle'};
 
 sub stringify {
   my $self             = shift;

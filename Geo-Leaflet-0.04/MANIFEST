@@ -17,3 +17,5 @@ lib/Geo/Leaflet/Icon.pm
 lib/Geo/Leaflet/DivIcon.pm
 example/quick-start-example.pl
 perl-Geo-Leaflet.spec
+META.yml                                 Module YAML meta-data (added by MakeMaker)
+META.json                                Module JSON meta-data (added by MakeMaker)

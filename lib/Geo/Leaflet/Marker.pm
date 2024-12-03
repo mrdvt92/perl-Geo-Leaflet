@@ -1,4 +1,4 @@
-package Geo::Leaflet::marker;
+package Geo::Leaflet::Marker;
 use strict;
 use warnings;
 use base qw{Geo::Leaflet::Objects};
@@ -8,7 +8,7 @@ our $PACKAGE = __PACKAGE__;
 
 =head1 NAME
 
-Geo::Leaflet::marker - Leaflet marker object
+Geo::Leaflet::Marker - Leaflet marker object
 
 =head1 SYNOPSIS
 
@@ -56,6 +56,8 @@ sub lon {
 =head2 stringify
 
 =cut
+
+sub _method_name {'marker'};
 
 sub stringify {
   my $self    = shift;

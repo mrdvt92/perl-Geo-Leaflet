@@ -1,4 +1,4 @@
-package Geo::Leaflet::tileLayer;
+package Geo::Leaflet::TileLayer;
 use strict;
 use warnings;
 use base qw{Geo::Leaflet::Base};
@@ -8,7 +8,7 @@ our $PACKAGE = __PACKAGE__;
 
 =head1 NAME
 
-Geo::Leaflet::tileLayer - Leaflet tileLayer Object
+Geo::Leaflet::TileLayer - Leaflet tileLayer Object
 
 =head1 SYNOPSIS
 
@@ -70,6 +70,8 @@ sub url {
 =head2 stringify
 
 =cut
+
+sub _method_name {'tileLayer'};
 
 sub stringify {
   my $self = shift;

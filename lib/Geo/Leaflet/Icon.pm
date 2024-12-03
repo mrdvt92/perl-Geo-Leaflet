@@ -1,4 +1,4 @@
-package Geo::Leaflet::icon;
+package Geo::Leaflet::Icon;
 use strict;
 use warnings;
 use base qw{Package::New};
@@ -9,7 +9,7 @@ our $PACKAGE = __PACKAGE__;
 
 =head1 NAME
 
-Geo::Leaflet::icon - Leaflet icon object
+Geo::Leaflet::Icon - Leaflet icon object
 
 =head1 SYNOPSIS
 

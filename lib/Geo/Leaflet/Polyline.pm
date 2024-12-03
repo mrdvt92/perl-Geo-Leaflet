@@ -1,14 +1,14 @@
-package Geo::Leaflet::polyline;
+package Geo::Leaflet::Polyline;
 use strict;
 use warnings;
-use base qw{Geo::Leaflet::polygon};
+use base qw{Geo::Leaflet::Polygon};
 
 our $VERSION = '0.04';
 our $PACKAGE = __PACKAGE__;
 
 =head1 NAME
 
-Geo::Leaflet::polyline - Leaflet polyline object
+Geo::Leaflet::Polyline - Leaflet polyline object
 
 =head1 SYNOPSIS
 
@@ -34,6 +34,10 @@ This package constructs a Leaflet polyline object for use on a L<Geo::Leaflet> m
 =head1 METHODS
 
 =head2 stringify
+
+=cut
+
+sub _method_name {'polyline'};
 
 =head1 SEE ALSO
 
