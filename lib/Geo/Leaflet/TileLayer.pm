@@ -34,9 +34,9 @@ Returns a tileLayer object
 
 =head2 osm
 
-Returns the default OpenStreetMaps.org tileLayer.
+Returns the default OpenStreetMaps.org TileLayer.
 
-  my $tileLayer = Geo::Leaflet::tileLayer->osm;
+  my $tileLayer = Geo::Leaflet::TileLayer->osm;
 
 =cut
 

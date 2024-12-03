@@ -18,7 +18,7 @@ Geo::Leaflet::Icon - Leaflet icon object
 
 =head1 DESCRIPTION
 
-This package constructs a Leaflet icon object for use in a L<Geo::Leaflet::marker> object.
+This package constructs a Leaflet icon object for use in a L<Geo::Leaflet::Marker> object.
 
 =head1 CONSTRUCTORS
 

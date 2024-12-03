@@ -17,7 +17,7 @@ Geo::Leaflet::DivIcon - Leaflet HTML/CSS icon object
 
 =head1 DESCRIPTION
 
-This package constructs a Leaflet divIcon object for use in a L<Geo::Leaflet::marker> object.
+This package constructs a Leaflet divIcon object for use in a L<Geo::Leaflet::Marker> object.
 
 =head1 CONSTRUCTORS
 

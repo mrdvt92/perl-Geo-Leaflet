@@ -293,9 +293,9 @@ Returns a tileLayer object
 
 ### osm
 
-Returns the default OpenStreetMaps.org tileLayer.
+Returns the default OpenStreetMaps.org TileLayer.
 
-    my $tileLayer = Geo::Leaflet::tileLayer->osm;
+    my $tileLayer = Geo::Leaflet::TileLayer->osm;
 
 ## PROPERTIES
 
@@ -560,7 +560,7 @@ Geo::Leaflet::Icon - Leaflet icon object
 
 ## DESCRIPTION
 
-This package constructs a Leaflet icon object for use in a [Geo::Leaflet::marker](https://metacpan.org/pod/Geo::Leaflet::marker) object.
+This package constructs a Leaflet icon object for use in a [Geo::Leaflet::Marker](https://metacpan.org/pod/Geo::Leaflet::Marker) object.
 
 ## CONSTRUCTORS
 
@@ -607,7 +607,7 @@ Geo::Leaflet::DivIcon - Leaflet HTML/CSS icon object
 
 ## DESCRIPTION
 
-This package constructs a Leaflet divIcon object for use in a [Geo::Leaflet::marker](https://metacpan.org/pod/Geo::Leaflet::marker) object.
+This package constructs a Leaflet divIcon object for use in a [Geo::Leaflet::Marker](https://metacpan.org/pod/Geo::Leaflet::Marker) object.
 
 ## CONSTRUCTORS
 
