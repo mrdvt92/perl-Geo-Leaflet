@@ -13,6 +13,7 @@ OpenStreetMaps
 maxZoom
 osm
 tileLayer
+TileLayer
 url
 CGI
 html

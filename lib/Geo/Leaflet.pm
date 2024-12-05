@@ -174,7 +174,7 @@ sub title {
 
 =head2 tileLayer
 
-Creates and returns a tileLayer object which is added to the map.
+Creates and returns a TileLayer object which is added to the map.
 
   $map->tileLayer(
                   url     => 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -371,7 +371,9 @@ sub circle {
 sub html {
   my $self = shift;
   my $html = $self->HTML;
-  return $html->html([
+  return join "",
+         '<!DOCTYPE html>',
+         $html->html([
            $html->head([
              $html->title($self->title),
              $self->html_head_links,
@@ -559,7 +561,7 @@ Returns an L<HTML:Tiny> object to generate HTML.
 sub HTML {
   my $self       = shift;
   $self->{'HTML'} = shift if @_;
-  $self->{'HTML'} = HTML::Tiny->new(mode=>'html') unless defined $self->{'HTML'};
+  $self->{'HTML'} = HTML::Tiny->new() unless defined $self->{'HTML'};
   return $self->{'HTML'};
 }
 

@@ -8,7 +8,7 @@ our $PACKAGE = __PACKAGE__;
 
 =head1 NAME
 
-Geo::Leaflet::TileLayer - Leaflet tileLayer Object
+Geo::Leaflet::TileLayer - Leaflet TileLayer Object
 
 =head1 SYNOPSIS
 
@@ -24,13 +24,13 @@ Geo::Leaflet::TileLayer - Leaflet tileLayer Object
 
 =head1 DESCRIPTION
 
-This package constructs a Leaflet tileLayer object for use on a L<Geo::Leaflet> map.
+This package constructs a Leaflet TileLayer object for use on a L<Geo::Leaflet> map.
 
 =head1 CONSTRUCTORS
 
 =head2 new
 
-Returns a tileLayer object
+Returns a TileLayer object
 
 =head2 osm
 
