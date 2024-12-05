@@ -371,9 +371,7 @@ sub circle {
 sub html {
   my $self = shift;
   my $html = $self->HTML;
-  return join "",
-         '<!DOCTYPE html>',
-         $html->html([
+  return $html->html([
            $html->head([
              $html->title($self->title),
              $self->html_head_links,
@@ -561,7 +559,7 @@ Returns an L<HTML:Tiny> object to generate HTML.
 sub HTML {
   my $self       = shift;
   $self->{'HTML'} = shift if @_;
-  $self->{'HTML'} = HTML::Tiny->new unless defined $self->{'HTML'};
+  $self->{'HTML'} = HTML::Tiny->new(mode=>'html') unless defined $self->{'HTML'};
   return $self->{'HTML'};
 }
 
